@@ -1,16 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/21 16:50:38 by antonio           #+#    #+#             */
-/*   Updated: 2021/11/22 14:07:41 by amaria-m         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 // Achar \n na static save(que guarda tudo o que n foi processado)
 // Alocar memoria necessaria p todas as posicoes de chr da linha
@@ -107,14 +95,14 @@ char	*ft_read_and_save(int fd, char *save)
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*save;
+	static char	*save[1024];
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
-	save = ft_read_and_save(fd, save);
-	if (!save)
+	save[fd] = ft_read_and_save(fd, save[fd]);
+	if (!save[fd])
 		return (NULL);
-	line = ft_get_line(save);
-	save = ft_save(save);
+	line = ft_get_line(save[fd]);
+	save[fd] = ft_save(save[fd]);
 	return (line);
 }
