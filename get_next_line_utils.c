@@ -3,52 +3,71 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antonio <antonio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 16:50:28 by antonio           #+#    #+#             */
-/*   Updated: 2021/11/22 10:23:08 by antonio          ###   ########.fr       */
+/*   Updated: 2021/11/22 11:32:33 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+size_t	ft_strlen(char *str)
 {
-	char	*new_str;
-	int		i;
-	int		j;
+	size_t	c;
 
-	if (!s1 || !s2)
-		return (NULL);
-	i = 0;
-	while (s1[i])
-		i++;
-	j = 0;
-	while (s2[j])
-		j++;
-	new_str = malloc(i + j + 1);
-	if (!new_str)
-		return (NULL);
-	i = 0;
-	while (*s1)
-		new_str[i++] = *s1++;
-	while (*s2)
-		new_str[i++] = *s2++;
-	new_str[i] = 0;
-	return (new_str);
+	c = 0;
+	if (!str)
+		return (0);
+	while (str[c] != '\0')
+		c++;
+	return (c);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(char *s, int c)
 {
-	int	index;
+	int	i;
 
-	index = 0;
-	if (s[index] == (char)c)
-		return ((char *)s);
-	while (s[index++] != '\0')
-		if (s[index] == (char)c)
-			return ((char *)s + index);
-	return (NULL);
+	i = 0;
+	if (!s)
+		return (0);
+	if (c == '\0')
+		return ((char *)&s[ft_strlen(s)]);
+	while (s[i] != '\0')
+	{
+		if (s[i] == (char) c)
+			return ((char *)&s[i]);
+		i++;
+	}
+	return (0);
+}
+
+char	*ft_strjoin(char *s1, char *s2)
+{
+	size_t	i;
+	size_t	c;
+	char	*str;
+
+	if (!s1)
+	{
+		s1 = (char *)malloc(1 * sizeof(char));
+		s1[0] = '\0';
+	}
+	if (!s1 || !s2)
+		return (NULL);
+	str = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	if (str == NULL)
+		return (NULL);
+	i = -1;
+	c = 0;
+	if (s1)
+		while (s1[++i] != '\0')
+			str[i] = s1[i];
+	while (s2[c] != '\0')
+		str[i++] = s2[c++];
+	str[ft_strlen(s1) + ft_strlen(s2)] = '\0';
+	free(s1);
+	return (str);
 }
 
 void	get_line_block(char *backup, char *line, int *i)

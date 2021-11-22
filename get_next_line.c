@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antonio <antonio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amaria-m <amaria-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 16:50:38 by antonio           #+#    #+#             */
-/*   Updated: 2021/11/22 10:20:17 by antonio          ###   ########.fr       */
+/*   Updated: 2021/11/22 11:32:46 by amaria-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,9 @@ char	*get_next_line(int fd)
 		buf[bytes_read] = '\0';
 	if (bytes_read == 0 && *backup == '\0')
 		return (NULL);
-	if (backup == NULL)
-	{
-		backup = malloc(1);
-		*backup = 0;
-	}
 	if (bytes_read != 0)
 	{
-		line = backup;
 		backup = ft_strjoin(backup, buf);
-		free(line);
 	}
 	while (ft_strchr(backup, '\n') == NULL && bytes_read == BUFFER_SIZE)
 	{
