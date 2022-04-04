@@ -1,6 +1,6 @@
 <h1 align="center"> Get_next_line | 42 School Project </h1>
 <h4>Reading a line from a fd is way too tedious</h4>
-<p>This project aimed to create a fucntion that could read content line by line from a file</p>
+<p>This project aimed to create a function that could read content line by line from a file</p>
 
 -----
 
