@@ -4,7 +4,7 @@
 
 -----
 
-<h4>What I lerned with this project?</h4>
+<h4>What I learned with this project?</h4>
 <p>- I learned about static variables</p>
 <p>- I've learned how to extract and edit content from files</p>
 <p>- And I became better at managing memory allocation</p>
