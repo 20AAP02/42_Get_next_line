@@ -20,6 +20,8 @@ https://github.com/20AAP02/get_next_line/blob/master/en.subject.pdf
 <h6>Mandatory : 100/100</h6>
 <h6>Bonus : 12/25</h6>
 
+-----
+
 <h4>How to use</h4>
 <h6>Function prototype</h6>
 
